@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# But keep all directories
+!*/
+
+# Allow only C++ source files
+!*.cpp
