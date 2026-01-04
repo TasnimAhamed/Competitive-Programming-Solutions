@@ -19,7 +19,6 @@ void solve() {
     	s2.insert({xq + dx[i] * b, yq + dy[i] * a});
     }
 
-
     int cnt = 0;
     for (auto x : s1) {
     	if(s2.find(x) != s2.end()) {
