@@ -6,7 +6,6 @@ public:
                 ch += 32;
             }
         }
-
         return s;
     }
 };
