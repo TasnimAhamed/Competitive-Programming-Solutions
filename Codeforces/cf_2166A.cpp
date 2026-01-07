@@ -7,7 +7,7 @@ void solve() {
     string s; cin >> s;
     int cnt = 0;
     for (auto ch : s) {
-    	if(ch != s[s.size() - 1]) {
+    	if(ch != s[n - 1]) {
     		++cnt;
     	}
     }
