@@ -3,17 +3,15 @@ using namespace std;
 using ll = long long;
 
 void solve() {
-    int n, k; cin >> n >> k;
-    string s; cin >> s;
-    if(k == 0) {
-    	cout << 1 << "\n";
+    int n; cin >> n;
+    vector<pair<int, int>> v;
+    for (int i = 1; i <= n; i++) {
+    	int x; cin >> x;
+    	v.push_back({x, i});
     }
-    else if(k == 1) {
-    	cout << n * 25 << "\n";
-    }
-    else{
-    	ll ans = 625LL * n * (n - 1) / 2 + n * 25;
-    	cout << ans + 1 << "\n";
+    sort(v.begin(), v.end());
+    for (int i = 0; i <= 2; i++) {
+    	cout << v[i].second << (i == 2 ? "\n" : " ");
     }
 }
 
