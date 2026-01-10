@@ -6,29 +6,26 @@ void solve() {
     int n, w; cin >> n >> w;
     vector<ll> v(n);
     for (auto &x : v) {
-    	cin >> x;
+        cin >> x;
+    }
+    vector<ll> cost(2 * w, 0);
+    for (int i = 1; i <= n; i++){
+        cost[i % (2 * w)] += v[i - 1];
     }
 
-    vector<ll> sum(2 * w, 0);
-    for (int i = 1; i <= n; i++) {	
-    	sum[i % (2 * w)] += v[i - 1];
-    }
-
-    vector<ll> cnt(4 * w, 0);
+    vector<ll> new_cost(4 * w);
     for (int i = 0; i < 2 * w; i++) {
-    	cnt[i] = cnt[i + 2 * w] = sum[i];
+        new_cost[i] = new_cost[i + 2 * w] = cost[i];
     }
 
     ll res = 0;
     for (int i = 0; i < w; i++) {
-        res += cnt[i];
+        res += new_cost[i];
     }
-
     ll ans = res;
-
     for (int i = w; i < 4 * w; i++) {
-        res += cnt[i];
-        res -= cnt[i - w];
+        res += new_cost[i];
+        res -= new_cost[i - w];
         ans = min(ans, res);
     }
 
