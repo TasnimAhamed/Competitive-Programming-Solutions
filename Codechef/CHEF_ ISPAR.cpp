@@ -3,8 +3,16 @@ using namespace std;
 using ll = long long;
 
 void solve() {
-    int n; cin >> n;
-    cout << n * 4 << "\n";
+    ll n, k; cin >> n >> k;
+    if(k == 1) {
+    	cout << (n&1 ? "ODD" : "EVEN") << "\n";
+    }
+    else if(k == 2) {
+    	cout << "ODD\n";
+    }
+    else{
+    	cout << "EVEN\n";
+    }
 }
 
 int main() {
@@ -12,7 +20,7 @@ int main() {
     cin.tie(nullptr);
 
     int t = 1;
-    // cin >> t;
+    cin >> t;
     while (t--) {
         solve();
     }
