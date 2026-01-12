@@ -1,65 +1,56 @@
 #include<bits/stdc++.h>
 using namespace std;
 using ll = long long;
-const int N = 25;
+const int N = 2e7 + 5;
 int cnt[N];
-bool isPerfectSquare(int x) {
- int sq = sqrt(x);
+bool isPerfectSquare(int mean) {
+    int sq = sqrt(mean);
 
- while(sq * sq < x) ++sq;
- while(sq * sq > x) --sq;
+    while(sq * sq < mean) ++sq;
+    while(sq * sq > mean) --sq;
 
- return sq * sq == x;
+    return sq * sq == mean;
 }
-
-bool isValidTraingle(int a, int b, int c) {
- if((a + b) > c and (b + c) > a and (c + a) > b) {
-  return true;
- }
-
- return false;
-}
-
 
 void preCompute() {
- for (int m = 1; m * m < N; m++) {
-  for (int n = 1; n * n < N; n++) {
-   int gcd = __gcd(m, n);
-   if (gcd > 1 or m % 2 == n % 2) {
-    continue;
-   }
+    for (int m = 2; m * m < N; m++) {
+        for (int n = 1; n < m; n++) {
+            int gcd = __gcd(m, n);
+            if (gcd > 1) {
+                continue;
+            }
+            if (m % 2 == n % 2) {
+                continue;
+            }
 
-   int a = m * m - n * n;
-   int b = 2 * m * n;
-   int c = m * m + n * n;
-   gcd = __gcd(a, __gcd(b, c));
-   if (gcd > 1 or a < 0 or !isValidTraingle(a, b, c)) {
-    continue;
-   }
+            int a = m * m - n * n;
+            int b = 2 * m * n;
+            int c = m * m + n * n;
 
-   int avg = (c  + a);
-   if (avg&1) {
-    continue;
-   }
-   avg /= 2;
-   if(isPerfectSquare(avg)) {
-    cnt[c] = 1;
-    cout << m << " " << n << "\n";
-    cout << a << " " << b << " " << c << "\n";
-   }
-  }
- }
- for (int i = 0; i < N; i++) {
-  cout << i << " -> " << cnt[i] << "\n";
- }
- for (int i = 1; i < N; i++) {
-  cnt[i] += cnt[i - 1];
- }
+            if( c >= N) {
+                break;
+            }
+
+            int sum = (c  + min(a, b));
+            if (sum & 1) {
+                continue;
+            }
+            sum /= 2;
+            if(!isPerfectSquare(sum)) {
+                continue;
+            }
+            cnt[c] += 1;
+        }
+    }
+
+    for (int i = 1; i < N; i++) {
+        cnt[i] += cnt[i - 1];
+    }
 }
 
 void solve() {
- int n; cin >> n;
- cout << cnt[n] << "\n";
+    int n; cin >> n;
+    cout << cnt[n] << "\n";
 }
 
 int main(){
