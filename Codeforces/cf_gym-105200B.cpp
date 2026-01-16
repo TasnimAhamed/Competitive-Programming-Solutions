@@ -26,6 +26,7 @@ void solve() {
     		cout << "yes\n";
     		continue;
     	}
+    	
     	int len = s.size();
     	int paisi = 0;
     	for (int i = 0; i < len - 1; i++) {
