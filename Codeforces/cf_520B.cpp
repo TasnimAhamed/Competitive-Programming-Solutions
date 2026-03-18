@@ -2,24 +2,31 @@
 using namespace std;
 using ll = long long;
 
-int get_count(int n, int k) {
-	if (n <= 0) {
-		return 1;
-	}
-	if (n == k) {
-		return 1;
-	}
+int min_moves(int n, int k) {
+    queue<pair<int,int>> q;
+    set<int> vis;
 
-	int mx1, mx2;
-	if (n < k) {
-		mx1 = 1 + get_count(n * 2, k);
-		mx2 = 1 + get_count(n - 1, k);
-	}
-	else {
-		mx2 = 1 + get_count(n - 1, k);
-	}
+    q.push({n,0});
+    vis.insert(n);
 
-	return min(mx1, mx2);
+    while(!q.empty()) {
+        auto [x,d] = q.front();
+        q.pop();
+
+        if(x == k) return d;
+
+        if(x*2 <= 2*k && !vis.count(x*2)) {
+            vis.insert(x*2);
+            q.push({x*2,d+1});
+        }
+
+        if(x-1 > 0 && !vis.count(x-1)) {
+            vis.insert(x-1);
+            q.push({x-1,d+1});
+        }
+    }
+
+    return -1;
 }
 
 void solve() {
@@ -28,7 +35,7 @@ void solve() {
     	cout << n - m << "\n";
     }
     else {
-    	int cnt = get_count(n, m);
+    	int cnt = min_moves(n, m);
     	cout << cnt << "\n";
     }
 }

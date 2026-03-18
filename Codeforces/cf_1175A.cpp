@@ -3,16 +3,20 @@ using namespace std;
 using ll = long long;
 
 void solve() {
-	int n; cin >> n;
-	vector<string> s(n);
-	for(auto &x : s) {
-		cin >> x;
+	ll n, k; cin >> n >> k;
+	ll cnt = 0;
+	while(n > 0) {
+		if(n % k) {
+			ll rem = n % k;
+			cnt += rem;
+			n -= rem;
+		}
+		else{
+			n /= k;
+			++cnt;
+		}
 	}
-	string ans = "";
-	for (int i = 0; i < n; i++) {
-		ans = min(ans + s[i], s[i] + ans);
-	}
-	cout << ans << "\n";
+	cout << cnt << "\n";
 }
 
 int main(){

@@ -2,42 +2,44 @@
 using namespace std;
 using ll = long long;
 
-bool isOk(ll  r) {
-	int digit_cnt = 0;
-	ll tmp = r;
-	while(tmp  > 0) {
-		++digit_cnt;
-		tmp /= 10;
+bool isOk(ll r) {
+	if (r <= 10) {
+		return false;
 	}
-	int left_cnt = (digit_cnt + 1) / 2;
-	int right_cnt = digit_cnt - left_cnt;
+	string s = to_string(r);
 
+	int sz = (s.size() + 1) / 2;
+	ll left_num = stoll(s.substr(0, sz));
+	ll right_num = stoll(s.substr(sz));
 
+	ll gcd = __gcd(left_num, right_num);
+
+	return gcd == 1;
 }
+
 
 void solve() {
-    ll l, r; cin >> l >> r;
+	ll l, r; cin >> l >> r;	
 
-    wile(l <= r) {
-    	if(gcd(r)) {
-    		cout << r << "\n";
-    	}
-    	--r;
-    }
+	while(l <= r) {
+		if(isOk(r)) {
+			cout << r << "\n";
+			return;
+		}
+		--r;
+	}
 
-    return;
+	cout << -1 << "\n";
 
 }
 
-int main() {
+int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
     int t = 1;
     cin >> t;
-    while (t--) {
+    while (t--){
         solve();
     }
-
-    return 0;
 }

@@ -3,16 +3,9 @@ using namespace std;
 using ll = long long;
 
 void solve() {
-	int n; cin >> n;
-	vector<string> s(n);
-	for(auto &x : s) {
-		cin >> x;
-	}
-	string ans = "";
-	for (int i = 0; i < n; i++) {
-		ans = min(ans + s[i], s[i] + ans);
-	}
-	cout << ans << "\n";
+	string s;
+	cin >> s;
+
 }
 
 int main(){

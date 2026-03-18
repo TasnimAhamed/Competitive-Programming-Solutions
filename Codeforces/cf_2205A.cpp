@@ -4,25 +4,27 @@ using ll = long long;
 
 void solve() {
 	int n; cin >> n;
-	vector<string> s(n);
-	for(auto &x : s) {
-		cin >> x;
-	}
-	string ans = "";
+	vector<int> v(n);
 	for (int i = 0; i < n; i++) {
-		ans = min(ans + s[i], s[i] + ans);
+		cin >> v[i];
 	}
-	cout << ans << "\n";
+	int idx = max_element(v.begin(), v.end()) - v.begin();
+	swap(v[0], v[idx]);
+
+	for (auto x : v) {
+		cout << x << " ";
+	}
+	cout << "\n";
 }
 
 int main(){
-
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
     int t = 1;
     cin >> t;
-    while(t--){
+    while (t--){
         solve();
     }
+    return 0;
 }

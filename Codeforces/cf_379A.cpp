@@ -3,7 +3,16 @@ using namespace std;
 using ll = long long;
 
 void solve() {
-	
+	int a, b; cin >> a >> b;
+	int cnt = 0, carry = 0;
+	while(a > 0) {
+		cnt += a;
+		int new_candle = a + carry;
+		a = new_candle / b;
+		carry = new_candle % b;
+		
+	}
+	cout << cnt << "\n";
 }
 
 int main(){
@@ -11,7 +20,7 @@ int main(){
     cin.tie(nullptr);
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--){
         solve();
     }

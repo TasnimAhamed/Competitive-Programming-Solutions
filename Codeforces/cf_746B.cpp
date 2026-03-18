@@ -3,7 +3,20 @@ using namespace std;
 using ll = long long;
 
 void solve() {
-	
+	int n; cin >> n;
+	string s; cin >> s;
+    string ans;
+    for (auto ch : s) {
+    	if (n & 1) {
+    		ans += ch;
+    	}
+    	else {
+    		ans = ch + ans;
+    	}
+    	--n;
+    }
+    cout << ans << "\n";
+
 }
 
 int main(){
@@ -11,7 +24,7 @@ int main(){
     cin.tie(nullptr);
 
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--){
         solve();
     }

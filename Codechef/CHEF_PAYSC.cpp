@@ -3,17 +3,20 @@ using namespace std;
 using ll = long long;
 
 void solve() {
-	
+    int x; cin >> x;
+
+    cout << min(100 + 4 * x, 300) << "\n";
 }
 
-int main(){
+int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
     int t = 1;
-    cin >> t;
-    while (t--){
+    // 	cin >> t;
+    while (t--) {
         solve();
     }
+
     return 0;
 }

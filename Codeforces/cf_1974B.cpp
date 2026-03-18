@@ -1,42 +1,41 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define int long long int
+using ll = long long;
 
-int32_t main()
-{
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+void solve() {
+	int n; cin >> n;
+	string s; cin >> s;
+	string uni;
+	for (auto ch : s) {
+		if (uni.find(ch) == string::npos) {
+			uni += ch;
+		}
+	}
+	sort(uni.begin(), uni.end());
+	map<char, char> mp;
+	int len = uni.size();
+	for (int i = 0; i < len / 2; i++) {
+		mp[uni[i]] = uni[len - i - 1];
+		mp[uni[len - i - 1]] = uni[i];
+	}
+	if (len & 1) {
+		mp[uni[len / 2]] = uni[len / 2];
+	}
+	for (int i = 0; i < n;  i++) {
+		s[i] = mp[s[i]];
+	}
 
-    int t; cin >> t;
-    while(t--){
-        int n; cin >> n;
-        string s; cin >> s;
-        string ans;
-        for(auto ch : s){
-            if(ans.find(ch) == string::npos){
-                ans+= ch;
-            }
-        }
-        sort(ans.begin(), ans.end());
-        map<char,char> ch;
-        int len = ans.size();
-        for(int i = 0; i < len/2; i++){
-            ch[ans[i]] = ans[len-i-1];
-            ch[ans[len-i-1]] = ans[i];
-        }
+	cout << s << "\n";
+}
 
-        if(len&1){
-            ch[ans[len/2]] = ans[len/2];
-        }
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-        for(int i = 0; i < s.size(); i++){
-            s[i] = ch[s[i]];
-        }
-
-        cout << s << "\n";
+    int t = 1;
+    cin >> t;
+    while (t--){
+        solve();
     }
-
-
     return 0;
-
 }

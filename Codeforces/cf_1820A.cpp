@@ -17,7 +17,6 @@ void solve() {
 	}
 
 	int cnt = 0, i = 0, len = -1;
-	
 	string ans = "";
 	if(s[i] == '_') {
 		++cnt;

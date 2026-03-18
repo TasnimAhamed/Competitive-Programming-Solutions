@@ -6,7 +6,6 @@ void solve() {
 	int n; cin >> n;
 	vector<int> v(n);
 	vector<bool> check(n);
-	
 	for (auto &x : v) {
 		cin >> x;
 		if(x < n) {
