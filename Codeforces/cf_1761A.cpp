@@ -1,21 +1,37 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-#define ll long long int
-#define en "\n"
 
-int main()
-{
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
+void solve() {
+    int n, a, b; cin >> n >> a >> b;
+    if (n == a and n == b) {
+        cout << "Yes\n";
+        return;
+    }
 
-    int t; cin >> t;
-    while(t--){
-        int n, a, b; cin >> n >> a >> b;
-        int mid = n/2;
-        if((n == a and n == b) or (a + b) <= (n-2)) cout << "Yes" << en;
-        else cout << "No\n";
+    if ((a + b) > n) {
+        cout << "No\n";
+        return;
+    }
+
+    int diff = n - (a + b);
+    if (diff >= 2) {
+        cout << "Yes\n";
+    }
+    else {
+        cout << "No\n";
+    }
+
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t = 1; 
+    cin >> t;
+    while (t--){
+        solve();
     }
 
     return 0;
-
 }
