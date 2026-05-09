@@ -1,36 +1,36 @@
 #include<bits/stdc++.h>
 using namespace std;
+using ll = long long;
 
-int main()
-{
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-
-        int a[n+5],b[n+5];
-        for(int i=0;i<n;i++){
-            cin>>a[i];
-            b[i]=a[i];
-
+void solve() {
+    int n; cin >> n;
+    vector<int> v(n);
+    int one = 0;
+    ll sum = 0;
+    for (auto &x : v) {
+        cin >> x;
+        sum += x;
+        if (x == 1) {
+            ++one;
         }
-        for(int i=0;i<n/2;i++){
-            swap(b[i],b[n-i-1]);
-        }
-        int cnt=0;
-        for(int i=0;i<n;i++){
-            if(a[i]==b[i]) cnt++;
-        }
-        if(cnt==0) cout<<"YES\n";
-        else if(cnt==n) cout<<"NO\n";
-        else{
-            cout<<"Match -> "<<cnt<<endl;
-        }
-
     }
+    if (n == 1 or sum - one < n) {
+        cout << "NO\n";
+    }
+    else {
+        cout << "YES\n";
+    }
+}
 
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t = 1;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
 
     return 0;
 }
-
