@@ -3,6 +3,7 @@ using namespace std;
 using ll = long long;
 const int N = 30;
 vector<string> str[N];
+
 bool vis[N];
 void dfs(int u) {
 	vis[u] = true;

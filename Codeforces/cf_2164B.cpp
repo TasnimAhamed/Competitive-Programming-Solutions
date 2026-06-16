@@ -4,30 +4,23 @@ using ll = long long;
 
 void solve() {
     int n; cin >> n;
-    int cnt0 = 0, cnt1 = 0, cnt2 = 0;
+    vector<int> even, odd;
     for (int i = 0; i < n; i++) {
     	int x; cin >> x;
-    	if (x == 0) {
-            ++cnt0;
-        }
-        else if(x == 1) {
-            ++cnt1;
-        }
-        else {
-            cnt2++;
-        }
+    	if (x & 1) {
+    		odd.push_back(x);
+    	}
+    	else {
+    		even.push_back(x);
+    	}
     }
 
-    if (cnt0 <= (n + 1) / 2) {
-        cout << 0 << "\n";
-    }
-    else if(!cnt1 or (cnt1 and cnt2)) {
-        cout << 1 << "\n";
+    if (even.size() >= 2) {
+    	cout << even[0] << " " << even[1] << "\n";
     }
     else {
-        cout << 2 << "\n";
+    	
     }
-    
 }
 
 int main() {

@@ -7,39 +7,47 @@ void solve() {
 
     vector<int> v(n);
     for (auto &x : v) {
-    	cin >> x;
+        cin >> x;
     }
 
-    unordered_map<int, int> freq, cnt;
-    for (auto x : v) {
-        int op = 0;
+    ll ans;
+    unordered_set<int> se;
+    unordered_map<int, ll> cost;
+    
+    for (int i = 0; i < n; i++) {
+        ans = 1e18;
+        int cnt = 0, x = v[i];
+
         unordered_set<int> vis;
+        unordered_map<int, ll> curr_cost;
 
-        while (!vis.count(x)) {
-            vis.insert(x);
-
-            freq[x] += op;
-            cnt[x]++;
-
-            if (x & 1) {
-                ++x;
-                ++op;
+        while (true) {
+            if (i == 0 or (i and se.find(x) != se.end())) {
+                vis.insert(x);
+                ans = min(ans, cost[x] + cnt);
+                curr_cost[x] = cost[x] + cnt;
             }
-            else {
-                x /= 2;
-                ++op;
+
+            if (x & 1) ++x;
+            else x /= 2;
+            ++cnt;
+
+            if (x == 1) {
+                vis.insert(x);
+                ans = min(ans, cost[x] + cnt);
+                if (curr_cost.find(x) == curr_cost.end()) {
+                    curr_cost[x] = cost[x] + cnt;
+                }
+                break;
             }
+
         }
+
+        cost.swap(curr_cost);
+        se.swap(vis);
     }
 
-    int mn = INT_MAX;
-    for (auto [key, val] : cnt) {
-        // cout << key << " " << val << "\n";
-        if (val == n) {
-            mn = min(mn, freq[key]);
-        }
-    }
-    cout << mn << "\n";
+    cout << ans << "\n";
 }
 
 int main() {
