@@ -9,19 +9,37 @@ void solve() {
     map<char, int, greater<char>> mp;
     int curr = 0;
     for (auto ch : s) {
-    	mp[ch]++;
-    	curr += (ch - 'a' + 1);
+        mp[ch]++;
+        curr += (ch - 'a' + 1);
     }
 
     if (curr <= p) {
-    	cout << s << "\n";
-    	return;
+        cout << s << "\n";
+        return;
     }
 
+    curr -= p;
+
+    // cout << curr << "\n";
+
     for (auto [key, val] : mp) {
-    	cout << key << " " << val << "\n";
+        int p = key - 'a' + 1;
+        int mn = min(val, (curr + p - 1) / p);
+        mp[key] -= mn;
+        curr -= p * mn;
+        if (curr <= 0) {
+            break;
+        }
     }
-    cout << curr << "\n";
+    string ans = "";
+    for (auto ch : s) {
+        if (mp[ch] != 0) {
+            ans += ch;
+            mp[ch]--;
+        }
+    }
+
+    cout << ans << "\n";
 }
 
 int main() {
