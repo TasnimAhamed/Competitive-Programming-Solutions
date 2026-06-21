@@ -3,7 +3,13 @@ using namespace std;
 using ll = long long;
 
 void solve() {
+    string s; cin >> s;
     
+    string nw = s;
+    reverse(nw.begin(), nw.end());
+
+    s += nw;
+    cout << s << "\n";
 }
 
 int main() {

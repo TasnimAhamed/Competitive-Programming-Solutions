@@ -30,6 +30,7 @@ void solve() {
         if (curr <= 0) {
             break;
         }
+
     }
     string ans = "";
     for (auto ch : s) {
