@@ -4,30 +4,17 @@ using ll = long long;
 
 void solve() {
     int n; cin >> n;
-    int ans = 0, cnt = 0;
+    vector<int> v(n);
+    for (auto& x : v) {
+    	cin >> x;
+    }
+    int ans = INT_MAX;
     for (int i = 0; i < n; i++) {
-    	int x; cin >> x;
-    	if(x != 0) {
-    		++cnt;
-    	}
-    	else{
-    		if(cnt) {
-    			++ans;
-    			cnt = 0;
-    		}
+    	if (v[i] != i) {
+    		ans &= v[i];
     	}
     }
-    if(cnt) {
-    	++ans;
-    }
-
-    if(ans > 2) {
-    	cout << 2 << "\n";
-    }
-    else{
-    	cout << ans << "\n";
-    }
-
+    cout << ans << "\n";
 }
 
 int main() {
@@ -36,7 +23,7 @@ int main() {
 
     int t = 1;
     cin >> t;
-    while (t--){
+    while (t--) {
         solve();
     }
 

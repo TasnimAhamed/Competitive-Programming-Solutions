@@ -4,37 +4,35 @@ using ll = long long;
 
 void solve() {
     int n; cin >> n;
-    vector<ll> a(n + 1);
+    vector<int> v(n + 1), pref_mx(n + 1, 0);
     for (int i = 1; i <= n; i++) {
-    	cin >> a[i];
+        cin >> v[i];
+        pref_mx[i] = max(pref_mx[i - 1], v[i]);
     }
 
-    ll cost = 0;
-    ll prev_mx = a[1];
-    for (int i = 2; i <= n; i++) {
-    	prev_mx = max(prev_mx, a[i]);
-    	if(i % 2 == 0) {
-    		a[i] = prev_mx;
-    	}
+    for (int i = 1; i <= n; i++)
+    {
+        if (i % 2 == 0) {
+            v[i] = pref_mx[i];
+        }
     }
-    for (auto x : a) {
-    	cout << x << " ";
-    }
-    cout << "\n";
-    for (int i = 1; i <= n; i+=2) {
-    	  if(i > 1 and (a[i] <= a[i - 1])) {
-    		ll need = (a[i - 1] - a[i] + 1);
-    		cost += need;
-    		a[i] -= need;
-    	}
-    	if(i < n and a[i] >= a[i + 1]) {
-    		ll need = (a[i] - a[i + 1] + 1);
-    		cost += need;
-    		a[i] -= need;
-    	}
+    
+    ll ans = 0; 
+    for (int i = 1; i < n; i++)
+    {
+        if (i & 1 and (v[i] >= v[i + 1])) {
+            int sub = (v[i] - v[i + 1] + 1);
+            v[i] -= sub;
+            ans += sub;
+        }
+        else if (i % 2 == 0 and v[i] <= v[i + 1]) {
+            int sub = v[i + 1] - v[i] + 1;
+            v[i + 1] -= sub;
+            ans += sub;
+        }
     }
 
-    cout << cost << "\n";
+    cout << ans << "\n";
 
 }
 
@@ -44,7 +42,7 @@ int main() {
 
     int t = 1;
     cin >> t;
-    while (t--){
+    while (t--) {
         solve();
     }
 
