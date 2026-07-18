@@ -1,52 +1,57 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define int long long int
+using ll = long long;
 
-int32_t main()
-{
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-
-
-    int t; cin>> t;
-    while(t--){
-        string s; cin>> s;
-        vector<int> cp, sm;
-        int len = s.size();
-        vector<bool> removed(len, true);
-        for(int i = 0; i < s.size(); i++){
-             if(s[i] == 'B' or s[i] == 'b'){
-                if(s[i] == 'B' and cp.size() != 0){
-                    int idx = cp.back();
-                    removed[idx] = false;
-                    cp.pop_back();
-                }
-                else if(s[i] == 'b' and sm.size() != 0){
-                    int idx = sm.back();
-                    removed[idx] = false;
-                    sm.pop_back();
-                }
-             }
-             else{
-                if(s[i] >= 'A' and s[i] <= 'Z'){
-                    cp.push_back(i);
-                }
-                else{
-                    sm.push_back(i);
-                }
-             }
-        }
-
-        string ans="";
-        for(int i = 0; i < s.size(); i++ ){
-            if(s[i] == 'B' or s[i] == 'b') continue;
-            if(removed[i]){
-                ans += s[i];
+void solve() {
+    string s; cin >> s;
+    vector<int> cp, sm;
+    vector<int> rm(s.size(), 1);
+    for (int i = 0; i < s.size(); i++) {
+        auto ch = s[i];
+        if (ch == 'B' or ch == 'b') {
+            if (ch == 'B' and cp.size()) {
+                int idx = cp.back();
+                rm[idx] = 0;
+                cp.pop_back();
+            }
+            else if (ch == 'b' and sm.size()) {
+                int idx = sm.back();
+                rm[idx] = 0;
+                sm.pop_back();
             }
         }
-        cout << ans << "\n";
+        else {
+            if (isupper(ch)) {
+                cp.push_back(i);
+            }
+            else {
+                sm.push_back(i);
+            }
+        }
+    }
+
+    string ans = "";
+    for (int i = 0; i < s.size(); ++i)
+    {
+        if (s[i] == 'B' or s[i] == 'b') {
+            continue;
+        }
+        else if (rm[i]) {
+            ans += s[i];
+        }
+    }
+    cout << ans << "\n";
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t = 1;
+    cin >> t;
+    while (t--) {
+        solve();
     }
 
     return 0;
-
 }
